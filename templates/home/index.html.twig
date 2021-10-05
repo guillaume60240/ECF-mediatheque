@@ -1,9 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Médiathèque de La Chapelle-Curreaux - Accueil{% endblock %}
 
 {% block body %}
+<div class="home-container">
+    <div class="home-bg">
+        <h1 class="text-center pt-5">Médiathèque</br> de </br>La Chapelle-Curreaux</h1>
+        <h2 class="text-center mb-5"> <span>Le </span> <span>service </span> <span>de </span> <span>Click </span> <span>and </span> <span>Collect </span></h2>
+        
+        <div class=" text-container text-center">
+            <h3>Plus de 4000 références</h3>
+            <ul class="text-start">
+                <li class="category">Littérature</li>
+                <li class="category">Science fiction</li>
+                <li class="category">Romans</li>
+                <li class="category">Bandes dessinées</li>
+                <li class="category">Histoire</li>
+                <li class="category">.....</li>
+            </ul>
+        </div>
 
+        <div class='btn-container d-flex justify-content-around'>
+            <button>M'inscrire</button>
+            <button>Me connecter</button>
+        </div>
+    </div>
 
-<button class="btn btn-primary">Hello</button>
+</div>
 {% endblock %}
