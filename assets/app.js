@@ -8,9 +8,11 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+// You can specify which plugins you need
+import { Tooltip, Toast, Popover, Carousel } from 'bootstrap';
+import './bootstrap.bundle.js';
 // start the Stimulus application
 import './bootstrap';
-
 //animation page d'accueil
 const titleSpans = document.querySelectorAll('h2 span');
 const btns = document.querySelectorAll('button');

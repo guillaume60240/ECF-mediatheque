@@ -21,10 +21,11 @@
         </div>
 
         <div class='btn-container d-flex justify-content-around'>
-            <button>M'inscrire</button>
-            <button>Me connecter</button>
+            <button type="button" data-toggle="modal" data-target="#register">M'inscrire</button>
+            <button type="button" data-toggle="modal" data-target="#login">Me connecter</button>
         </div>
     </div>
-
 </div>
+{% include "/utils/register.html.twig" %}
+{% include "/utils/modals/login.html.twig" %}
 {% endblock %}
