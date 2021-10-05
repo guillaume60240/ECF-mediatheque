@@ -8,12 +8,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      {{ form_start(registerForm) }}
       <div class="modal-body">
-        ...
+        {{ form_row(registerForm.firstname) }}
+        {{ form_row(registerForm.name) }}
+        {{ form_row(registerForm.email) }}
+        {{ form_row(registerForm.birthday) }}
+        {{ form_row(registerForm.street) }}
+        {{ form_row(registerForm.city) }}
+        {{ form_row(registerForm.password) }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Valider</button>
+        {{ form_row(registerForm.checkbox) }}
+        <div class="w-100 d-flex justify-content-around">
+          {{ form_row(registerForm.delete) }}
+          {{ form_row(registerForm.submit) }}
+        </div>
+      </div>
+      {{ form_end(registerForm) }}
+        
+      <div class="mt-3 text-center">
+        <a href=""> Déjà inscrit? <small>Me connecter</small> </a>
       </div>
     </div>
   </div>
