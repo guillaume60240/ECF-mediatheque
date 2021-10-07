@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -54,8 +55,9 @@ class RegisterType extends AbstractType
                     'placeholder' => 'Merci de saisir un email valide'
                 ]
             ])
-            ->add('birthday', DateType::class, [
+            ->add('birthday', BirthdayType::class, [
                 'required' => true,
+                'format' => 'dd-MMMM-yyyy',
                 'label' => 'Votre date de naissance *'
             ])
             ->add('street', TextType::class, [

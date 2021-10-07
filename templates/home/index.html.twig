@@ -5,6 +5,7 @@
 {% block body %}
 <div class="home-container">
     <div class="home-bg">
+      
         <h1 class="text-center pt-5">Médiathèque</br> de </br>La Chapelle-Curreaux</h1>
         <h2 class="text-center mb-5"> <span>Le </span> <span>service </span> <span>de </span> <span>Click </span> <span>and </span> <span>Collect </span></h2>
         
@@ -16,16 +17,15 @@
                 <li class="category">Romans</li>
                 <li class="category">Bandes dessinées</li>
                 <li class="category">Histoire</li>
-                <li class="category">.....</li>
+                <li class="category">Et plus encore...</li>
             </ul>
         </div>
 
         <div class='btn-container d-flex justify-content-around'>
             <button type="button" data-toggle="modal" data-target="#register">M'inscrire</button>
-            <button type="button" data-toggle="modal" data-target="#login">Me connecter</button>
+            <button type="button"><a href="{{ path('app_login') }}">Me connecter</a></button>
         </div>
     </div>
 </div>
-{% include "/utils/register.html.twig" %}
-{% include "/utils/modals/login.html.twig" %}
+{% include "/utils/modals/register.html.twig" %}
 {% endblock %}
