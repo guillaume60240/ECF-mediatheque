@@ -1,5 +1,11 @@
 .books-card {
 
+    transition: all ease-in-out .4s;
+    
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
     .container-img {
         overflow: hidden;
         position: relative;
