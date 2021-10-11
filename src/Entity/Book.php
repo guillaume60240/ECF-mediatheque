@@ -28,7 +28,7 @@ class Book
     private $picture;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $parution;
 
@@ -92,12 +92,12 @@ class Book
         return $this;
     }
 
-    public function getParution(): ?\DateTimeInterface
+    public function getParution(): ?int
     {
         return $this->parution;
     }
 
-    public function setParution(\DateTimeInterface $parution): self
+    public function setParution(int $parution): self
     {
         $this->parution = $parution;
 
