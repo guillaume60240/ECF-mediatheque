@@ -1,0 +1,31 @@
+.books-card {
+
+    .container-img {
+        overflow: hidden;
+        position: relative;
+      
+        &:before {
+          content: '';
+          display: block;
+          padding-top: 100%; // ratio 2:1
+        }
+    }
+    
+    .books-card-img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .books-card-autor {
+        text-decoration: underline;
+    }
+
+    .books-card-description{
+        font-weight: 500;
+        font-size: small;
+        font-family: sans-serif;
+    }
+}

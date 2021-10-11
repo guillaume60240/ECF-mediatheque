@@ -1,0 +1,14 @@
+<div class="books-card card col-sm-12 col-md-5 col-lg-3 m-2">
+    <div class="container-img">
+        <img class="books-card-img card-img-top" src="{{ asset('uploads/books/' ~ book.picture) }}" alt="Card image cap">
+    </div>
+    <div class="card-body">
+        <h5 class="books-card-title card-title">{{ book.title }}</h5>
+        <h6 class="books-card-autor card-title font-italic">{{ book.autor }}</h6>
+        <p class="books-card-description card-text">{{ book.description| length > 150 ? book.description|slice(0, 150) ~ '...' : book.description }}</p>
+    </div>
+    <div class="card-body text-center">
+        <a href="#" class="card-link">Voir détails</a>
+        <a href="#" class="card-link">Réserver</a>
+    </div>
+</div>

@@ -39,8 +39,8 @@ class BookCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/books')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
-                ->onlyOnForms()
-                ->onlyOnDetail(),
+                ->onlyOnDetail()
+                ->onlyOnForms(),
             NumberField::new('parution')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
