@@ -29,3 +29,15 @@ window.addEventListener('load', () => {
 
     TL.play();
 })
+
+//fleche toggler nav
+const navBtnToggler = document.querySelector('#navBtnToggler');
+const navBtnTogglerSpan = document.querySelector('#navBtnTogglerSpan');
+
+navBtnToggler.addEventListener('click', () => {
+    if(navBtnToggler.classList.value === "navbar-toggler collapsed"){
+        navBtnTogglerSpan.innerHTML = 'Les genres &darr;';
+    }else if(navBtnToggler.classList.value === "navbar-toggler"){
+        navBtnTogglerSpan.innerHTML = 'Les genres &uarr;';
+    }
+})

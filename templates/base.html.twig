@@ -18,6 +18,9 @@
         {% endblock %}
     </head>
     <body>
+        {% if block('header') is defined %}
+            {% include "utils/header.html.twig" %}
+        {% endif %}
     
         <div class="flash">
             {% include('utils/flash.html.twig') %}
