@@ -14,10 +14,8 @@ class LocationService {
     protected $bookRepo;
     protected $entityManager;
 
-    public function __construct(UserRepository $userRepo, BookRepository $bookRepo, EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->userRepo = $userRepo;
-        $this->bookRepo = $bookRepo;
         $this->entityManager = $entityManager;
     }
 
@@ -43,6 +41,5 @@ class LocationService {
             $this->entityManager->flush();
 
         }
-        
     }
 }

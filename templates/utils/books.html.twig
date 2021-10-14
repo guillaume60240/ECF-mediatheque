@@ -9,6 +9,10 @@
     </div>
     <div class="card-body text-center">
         <a href="{{ path('show_one_book', {'bookTitleSlug' : book.titleSlug}) }}" class="card-link">Voir détails</a>
-        <a href="#" class="card-link">Réserver</a>
+        {% if book.available == true %}
+        <a href="{{ path('reservation', {'id' : book.id}) }}" class="card-link">Réserver</a>
+        {% else %}
+        <a href="#" class="card-link text-danger">Non disponible</a>
+        {% endif %}
     </div>
 </div>

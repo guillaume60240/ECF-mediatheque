@@ -22,7 +22,19 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('show_books');
         }
 
-        $locationService->new($this->getUser(), $book);
+        $location = $locationService->new($this->getUser(), $book);
+
+        if($location){
+            $this->addFlash(
+                'success',
+                'Vous avez réservé le livre '.$book->getTitle().' de '.$book->getAutor()
+            );
+        } else {
+            $this->addFlash(
+                'error',
+                'Le livre '.$book->getTitle().' de '.$book->getAutor().' n\'est pas disponible pour le moment '
+            );
+        }
 
         return $this->redirect($request->server->get('HTTP_REFERER'));
     }
