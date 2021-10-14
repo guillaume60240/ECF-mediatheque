@@ -49,6 +49,11 @@ class Reservation
      */
     private $restitution;
 
+    public function __toString()
+    {
+        return $this->getBook()->getTitle().' '.$this->getBook()->getAutor();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

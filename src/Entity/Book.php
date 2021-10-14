@@ -75,6 +75,11 @@ class Book
         $this->reservations = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getTitle().' de '.$this->getAutor();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

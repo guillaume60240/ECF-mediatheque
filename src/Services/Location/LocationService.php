@@ -40,6 +40,7 @@ class LocationService {
             $this->entityManager->persist($location);
             $this->entityManager->flush();
 
+            return true;
         }
     }
 }
