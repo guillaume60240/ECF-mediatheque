@@ -5,7 +5,7 @@
     <h5 class="book-description-title">Résumé</h5>
     <p class="book-description"> {{ book.description }}</p>
     <div class="d-flex justify-content-around">
-        <a href="" class="card-link">Réserver</a>
+        <a href="{{ path('reservation', {'id' : book.id}) }}" class="card-link">Réserver</a>
         <a href="" class="card-link">Ajouter aux favoris</a>
     </div>
 </div>
