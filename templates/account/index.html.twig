@@ -1,20 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
-
+{% block title %}Espace personnel - {{ siteName }}{% endblock %}
+{% block header %} {% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+     {# Affichage des réservations #}
+    <div class="text-center">
+        <h3 class="mt-3">Mes réservations</h3>
+        <div class="row justify-content-center container">
+            {% if reservations|length == 0 %}
+                <p>
+                    Vous n'avez pas encore réservé de livre
+                </p>
+            {% else %}
+                {% for reservation in reservations %}
+                    {% if reservation.validate == false %}
+                        <div class="col col-md-4 col-xl-3 ms-3 border border-light mt-3 p-2" id="orders-list">
+                            <p class="bg-info">Réservé le : {{ reservation.createdAt|date('d-m-Y') }}</p>
+                            <p>{{ reservation.book.title }}
+                            <p>{{ reservation.book.autor }}</br>
+                            <a href="" class="text-danger">Annuler</a>
+                            <p class="bg-danger">A retirer avant le {{ reservation.createdAt|date_modify("+3 day")|date('d-m-Y') }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div> 
+    <hr>
+    {# Affichage des locations  #}
+    <div class="text-center">
+        <h3 class="mt-3">Mes emprunts en cours</h3>
+        <div class="row justify-content-center container">
+            {% if locations|length == 0 %}
+                <p>
+                    Vous n'avez pas encore emprunté de livre
+                </p>
+            {% else %}
+                {% for location in locations %}
+                    {% if location.validate == true %}
+                        <div class="col col-md-4 col-xl-3 ms-3 border border-light mt-3 p-2" id="orders-list">
+                            <p class="bg-info">Emprunté le : {{ location.validateAt|date('d-m-Y') }}</p>
+                            <p>{{ location.book.title }}
+                            <p>{{ location.book.autor }}
+                            <p class="bg-danger">A restituer avant le {{ location.validateAt|date_modify("+21 day")|date('d-m-Y') }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div> 
+    
+    <p>Mes favoris</p>
+    <p>Mes commentaires</p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/satch60/projets-sites/symfony/ECF-mediatheque/src/Controller/AccountController.php'|file_link(0) }}">src/Controller/AccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/satch60/projets-sites/symfony/ECF-mediatheque/templates/account/index.html.twig'|file_link(0) }}">templates/account/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
