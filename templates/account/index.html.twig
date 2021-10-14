@@ -18,7 +18,7 @@
                             <p class="bg-info">Réservé le : {{ reservation.createdAt|date('d-m-Y') }}</p>
                             <p>{{ reservation.book.title }}
                             <p>{{ reservation.book.autor }}</br>
-                            <a href="" class="text-danger">Annuler</a>
+                            <a href="{{ path('deleteReservation', {'id' : reservation.id}) }}" class="text-danger">Annuler</a>
                             <p class="bg-danger">A retirer avant le {{ reservation.createdAt|date_modify("+3 day")|date('d-m-Y') }}
                         </div>
                     {% endif %}

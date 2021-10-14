@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\BookRepository;
+use App\Repository\ReservationRepository;
 use App\Services\Location\LocationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +36,27 @@ class ReservationController extends AbstractController
                 'error',
                 'Le livre '.$book->getTitle().' de '.$book->getAutor().' n\'est pas disponible pour le moment '
             );
+        }
+
+        return $this->redirect($request->server->get('HTTP_REFERER'));
+    }
+
+    /**
+     * @route("/membre/annulation/{id}", name="deleteReservation")
+     */
+    public function delete(ReservationRepository $reservationRepository,EntityManagerInterface $entityManagerInterface, Request $request, $id)
+    {
+        $reservation = $reservationRepository->findOneBy(['id' => $id]);
+
+        if($reservation){
+
+            $reservation->getBook()->setAvailable(true);
+            $location = $reservation->getUser()->getLocation();
+            $reservation->getUser()->setLocation($location - 1);
+            
+            $entityManagerInterface->remove($reservation);
+
+            $entityManagerInterface->flush();
         }
 
         return $this->redirect($request->server->get('HTTP_REFERER'));
