@@ -70,6 +70,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $accountValidate;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $location;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -239,6 +244,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAccountValidate(bool $accountValidate): self
     {
         $this->accountValidate = $accountValidate;
+
+        return $this;
+    }
+
+    public function getLocation(): ?int
+    {
+        return $this->location;
+    }
+
+    public function setLocation(int $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

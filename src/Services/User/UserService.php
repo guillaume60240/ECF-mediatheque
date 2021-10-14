@@ -36,6 +36,7 @@ class UserService {
             $user->setCreatedAt($createdAt);
             $user->setMailValidate(false);
             $user->setAccountValidate(false);
+            $user->setLocation(0);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
