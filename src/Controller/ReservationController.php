@@ -44,19 +44,18 @@ class ReservationController extends AbstractController
     /**
      * @route("/membre/annulation/{id}", name="deleteReservation")
      */
-    public function delete(ReservationRepository $reservationRepository,EntityManagerInterface $entityManagerInterface, Request $request, $id)
+    public function delete(ReservationRepository $reservationRepository,LocationService $locationService, Request $request, $id)
     {
         $reservation = $reservationRepository->findOneBy(['id' => $id]);
 
         if($reservation){
 
-            $reservation->getBook()->setAvailable(true);
-            $location = $reservation->getUser()->getLocation();
-            $reservation->getUser()->setLocation($location - 1);
-            
-            $entityManagerInterface->remove($reservation);
-
-            $entityManagerInterface->flush();
+            $book = $reservation->getBook();
+            $locationService->delete($reservation);
+            $this->addFlash(
+                'success',
+                'Vous avez annulé la réservation de '.$book->getTitle().' de '.$book->getAutor()
+            );
         }
 
         return $this->redirect($request->server->get('HTTP_REFERER'));

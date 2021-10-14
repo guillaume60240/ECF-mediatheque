@@ -43,4 +43,15 @@ class LocationService {
             return true;
         }
     }
+
+    public function delete($reservation)
+    {
+        $reservation->getBook()->setAvailable(true);
+        $location = $reservation->getUser()->getLocation();
+        $reservation->getUser()->setLocation($location - 1);
+        
+        $this->entityManager->remove($reservation);
+
+        $this->entityManager->flush();
+    }
 }
