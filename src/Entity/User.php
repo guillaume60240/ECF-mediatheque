@@ -82,9 +82,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reservations;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Validation::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $validation;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+        $this->validations = new ArrayCollection();
     }
 
     public function __toString()
@@ -306,4 +312,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getValidation(): ?Validation
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(Validation $validation): self
+    {
+        // set the owning side of the relation if necessary
+        if ($validation->getUser() !== $this) {
+            $validation->setUser($this);
+        }
+
+        $this->validation = $validation;
+
+        return $this;
+    }
+
+    // public function removeValidation(Validation $validation): self
+    // {
+    //     if ($this->validations->removeElement($validation)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($validation->getUser() === $this) {
+    //             $validation->setUser(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
 }

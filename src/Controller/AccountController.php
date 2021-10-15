@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Form\ValidationMailType;
 use App\Repository\BookRepository;
 use App\Repository\ReservationRepository;
+use App\Services\Validation\ValidationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,7 +18,7 @@ class AccountController extends AbstractController
      */
     public function index(ReservationRepository $reservationRepository, BookRepository $bookRepository): Response
     {
-
+        $books = [];
         if($this->getUser()->getAccountValidate() === false){
             $this->addFlash('error', 'Votre compte n\'est pas encore validé.');
             return $this->redirectToRoute('app_login');
@@ -35,6 +38,33 @@ class AccountController extends AbstractController
             'reservations' => $reservations,
             'locations' => $locations,
             'books' => $books
+        ]);
+    }
+
+    /**
+     * @Route("/valider-mon-mail", name="accountValidate")
+     */
+    public function validate(Request $request, ValidationService $validationService): Response
+    {
+        $form = $this->createForm(ValidationMailType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $mail = $form->get('user')->getData();
+            $code = $form->get('code')->getData();
+            $action = $validationService->valideMail($mail, $code);
+
+            if($action === true){
+                $this->addFlash('succes', 'Votre mail a été validé.');
+
+               
+            }else{
+                $this->addFlash('error', 'Il y a eu une erreur dans la validation de votre mail.');
+            }
+        }
+        
+        return $this->render('account/validate.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

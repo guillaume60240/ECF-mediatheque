@@ -52,23 +52,4 @@ class UserService {
             return $succcess = 'error';
         }
     }
-
-    public function newValidation($user, $code)
-    {
-        $validation = $user->getValidation();
-
-        if($validation){
-            $validation->setCode($code);
-            $this->entityManager->flush();
-            return true;
-        }else{
-            // $validation = new Validation;
-            $validation -> setUser($user);
-            $validation->setCode($code);
-            $this->entityManager->persist($validation);
-            $this->entityManager->flush();
-            return true;
-        }
-        return false;
-    }
 }
