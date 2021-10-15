@@ -9,7 +9,8 @@
 
 .home-bg {
     position: relative;
-    height: 100%;
+    min-height: 100vh;
+    height: max-content;
     width: 100%;
     background: rgba(0,0,0,.6);
     backdrop-filter: grayscale(0.3) contrast(1) blur(1px);
@@ -47,23 +48,26 @@
         border: 2px solid $light;
         outline: none;
         background: transparent;
-        font-size: 2em;
         padding: 1em;
-        width: 400px;
-        letter-spacing: .2em;
+        width: 150px;
+        // letter-spacing: .2em;
         color: $light;
         border-radius: 10px;
         transition: all ease-in-out .5s;
         opacity: 1;
 
-        a {
-            text-decoration: none;
-            color: $light;
-        }
-        
         &:hover {
             background: $light;
             color: $black;
+
+            a {
+                color: $black;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: $light;
         }
     }
 

@@ -2,17 +2,17 @@
 
 namespace App\Services\Mail;
 
-use App\Services\Mail\Mail;
+use App\Utils\Mail;
 use App\Services\User\UserService;
 
 class MailService
 {
     protected $userService;
 
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
+    // public function __construct(UserService $userService)
+    // {
+    //     $this->userService = $userService;
+    // }
 
     public function validationMail($user)
     {
@@ -22,6 +22,6 @@ class MailService
 
         $mail->sendValidation($user->getEmail(), $user->getName().' '.$user->getFirstname(), 'Validation de mail', $code, $link);
 
-        $this->userService->newValidation($user, $code);
+        // $this->userService->newValidation($user, $code);
     }
 }
