@@ -17,6 +17,13 @@
         <li class="nav-item">
           <a href="{{ path('app_logout') }}"class="nav-link">Me déconnecter</a>
         </li>
+        {% for role in app.user.roles %}
+          {% if role == 'ROLE_ADMIN' %}
+            <li class="nav-item">
+              <a href="{{ path('admin') }}"class="nav-link">Administration</a>
+            </li>
+          {% endif %}
+        {% endfor %}
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
