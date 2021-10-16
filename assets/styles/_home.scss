@@ -16,7 +16,7 @@
     backdrop-filter: grayscale(0.3) contrast(1) blur(1px);
     color: $light;
 
-    h1, h2 {
+    h1, h2, h3 {
         letter-spacing: .2em;
     }
 
@@ -28,29 +28,18 @@
     h2 {
         font-size: 2em;
         opacity: 1;
-        margin-top: 10%;
     }
 
     h3 {
         font-size: 1.5em;
     }
 
-    .text-container {
-        margin-top: 20%;
-    }
-
-    .btn-container {
-        margin-top: 20%;
-
-    }
-
     button {
         border: 2px solid $light;
         outline: none;
-        background: transparent;
+        background: rgba(0,0,0,.6);
         padding: 1em;
         width: 150px;
-        // letter-spacing: .2em;
         color: $light;
         border-radius: 10px;
         transition: all ease-in-out .5s;
