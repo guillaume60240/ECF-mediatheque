@@ -22,19 +22,44 @@ class BookRepository extends ServiceEntityRepository
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getPaginatedBooks($pageBook, $limit)
     {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('b.title', 'ASC')
+            ->setFirstResult(($pageBook * $limit) - $limit)
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function getPaginatedBooksByAutor($pageBook, $limit, $autorSlug)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.autorSlug = :val')
+            ->setParameter('val', $autorSlug)
+            ->orderBy('b.title', 'ASC')
+            ->setFirstResult(($pageBook * $limit) - $limit)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function getPaginatedBooksByCategory($pageBook, $limit, $category)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.category = :val')
+            ->setParameter('val', $category)
+            ->orderBy('b.title', 'ASC')
+            ->setFirstResult(($pageBook * $limit) - $limit)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Book
