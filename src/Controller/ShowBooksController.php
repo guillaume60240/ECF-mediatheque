@@ -24,7 +24,7 @@ class ShowBooksController extends AbstractController
     }
 
     /**
-     * @Route("/membre/catalogue/{category}", name="show_books_category")
+     * @Route("/membre/catalogue-categorie/{category}", name="show_books_category")
      */
     public function showByCategory(CategoryRepository $categoryRepository, string $category): Response
     {
@@ -43,8 +43,26 @@ class ShowBooksController extends AbstractController
                 return $this->redirectToRoute('show_books');
             }
         } else{
-            $this->addFlash('error', 'Catte catégorie n\'existe pas');
+            $this->addFlash('error', 'Cette catégorie n\'existe pas');
             return $this->redirectToRoute('show_books');
         }
+    }
+
+    /**
+     * @Route("/membre/catalogue-auteur/{autorSlug}", name="show_books_autor")
+     */
+    public function showByAutor(BookRepository $bookRepository, string $autorSlug): Response
+    {
+        $books = $bookRepository->findBy(['autorSlug' => $autorSlug]);
+
+         if($books){
+            return $this->render('show_books/index.html.twig', [
+                'controller_name' => 'ShowBooksController',
+                'books' => $books
+            ]);
+         } else{
+            $this->addFlash('error', 'Cet auteur n\'existe pas');
+            return $this->redirectToRoute('show_books');
+         }
     }
 }

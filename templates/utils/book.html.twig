@@ -1,6 +1,6 @@
 <div class="book-view p-3">
     <h3 class="book-title"> {{ book.title }}</h3>
-    <h4 class="book-autor"> {{ book.autor }}</h4>
+    <h4 class="book-autor"><a href="{{ path('show_books_autor', {'autorSlug' : book.autorSlug}) }}"> {{ book.autor }}</a></h4>
     <p class="book-parution"> Date de parution : {{ book.parution }} </p>
     <h5 class="book-description-title">Résumé</h5>
     <p class="book-description"> {{ book.description }}</p>

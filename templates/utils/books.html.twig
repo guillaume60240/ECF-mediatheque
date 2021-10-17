@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <h5 class="books-card-title card-title">{{ book.title }}</h5>
-        <h6 class="books-card-autor card-title font-italic">{{ book.autor }}</h6>
+        <h6 class="books-card-autor card-title font-italic"><a href="{{ path('show_books_autor', {'autorSlug' : book.autorSlug}) }}">{{ book.autor }}</a></h6>
         <p class="books-card-description card-text">{{ book.description| length > 150 ? book.description|slice(0, 150) ~ '...' : book.description }}</p>
     </div>
     <div class="card-body text-center">
