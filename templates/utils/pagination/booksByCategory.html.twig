@@ -1,0 +1,8 @@
+<a class="page-link" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : (pageBook - 1)}) }}" tabindex="-1">Précédent</a>
+</li>
+{% for item in 1..((totalBooks / limit)|round(0,'ceil')) %}
+    <li class="page-item"><a class="page-link {{ (pageBook == item) ? 'active bg-light' }}" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : item}) }}">{{ item }}</a></li>
+{% endfor %}
+<li class="page-item {{ ( pageBook >= (totalBooks / limit) ? 'disabled') }}">
+<a class="page-link" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : (pageBook + 1)}) }}">Suivant</a>
+</li>

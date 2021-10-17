@@ -6,47 +6,27 @@
 {% block body %}
 
 <div class="container-fluid">
-    <div class="row"> 
+    <div class="row justify-content-center"> 
         
         {% for book in books %}
             {% include "utils/books.html.twig" %} 
         {% endfor %}
-        {% set route_name = app.request.attributes.get('_route') %}
+        
+    </div>
+    {% set route_name = app.request.attributes.get('_route') %}
         {% if  (totalBooks > limit) %}     
             <nav class="mt-3">
                 <ul class="pagination justify-content-center">
                     <li class="page-item {{ (pageBook == 1 ? 'disabled') }}">
                     {% if route_name == 'show_books' %}
-                        <a class="page-link" href="{{ path( 'show_books' , {'pageBook' : (pageBook - 1)}) }}" tabindex="-1">Précédent</a>
-                        </li>
-                        {% for item in 1..((totalBooks / limit)|round(0,'ceil')) %}
-                            <li class="page-item"><a class="page-link {{ (pageBook == item) ? 'active bg-light' }}" href="{{ path( 'show_books' , {'pageBook' : item}) }}">{{ item }}</a></li>
-                        {% endfor %}
-                        <li class="page-item {{ ( pageBook >= (totalBooks / limit) ? 'disabled') }}">
-                        <a class="page-link" href="{{ path( 'show_books' , {'pageBook' : (pageBook + 1)}) }}">Suivant</a>
-                        </li>
+                        {% include "utils/pagination/allBooks.html.twig" %}
                     {% elseif route_name == 'show_books_category' %}
-                        <a class="page-link" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : (pageBook - 1)}) }}" tabindex="-1">Précédent</a>
-                        </li>
-                        {% for item in 1..((totalBooks / limit)|round(0,'ceil')) %}
-                            <li class="page-item"><a class="page-link {{ (pageBook == item) ? 'active bg-light' }}" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : item}) }}">{{ item }}</a></li>
-                        {% endfor %}
-                        <li class="page-item {{ ( pageBook >= (totalBooks / limit) ? 'disabled') }}">
-                        <a class="page-link" href="{{ path( 'show_books_category' , {'category' : (category), 'pageBook' : (pageBook + 1)}) }}">Suivant</a>
-                        </li>
+                        {% include "utils/pagination/booksByCategory.html.twig" %}
                     {% elseif route_name == 'show_books_autor' %}
-                        <a class="page-link" href="{{ path( 'show_books_autor' , {'autorSlug' : (autorSlug), 'pageBook' : (pageBook - 1)}) }}" tabindex="-1">Précédent</a>
-                        </li>
-                        {% for item in 1..((totalBooks / limit)|round(0,'ceil')) %}
-                            <li class="page-item"><a class="page-link {{ (pageBook == item) ? 'active bg-light' }}" href="{{ path( 'show_books_autor' , {'autorSlug' : (autorSlug), 'pageBook' : item}) }}">{{ item }}</a></li>
-                        {% endfor %}
-                        <li class="page-item {{ ( pageBook >= (totalBooks / limit) ? 'disabled') }}">
-                        <a class="page-link" href="{{ path( 'show_books_autor' , {'autorSlug' : (autorSlug), 'pageBook' : (pageBook + 1)}) }}">Suivant</a>
-                        </li>
+                        {% include "utils/pagination/booksByAutor.html.twig" %}
                     {% endif %}
                 </ul>
             </nav>
         {% endif %}
-    </div>
 </div>
 {% endblock %}
