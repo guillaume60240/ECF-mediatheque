@@ -31,9 +31,16 @@ class ShowOneBookController extends AbstractController
         if($title){
             $book = $bookRepository->findOneBy(['title' => $title]);
             
-            return $this->render('show_books/one.html.twig', [
-                'book' => $book
-            ]);
+            if($book){
+
+                return $this->render('show_books/one.html.twig', [
+                    'book' => $book
+                ]);
+            } else {
+                $this->addFlash('error', 'Ce livre n\'existe pas');
+                return $this->redirectToRoute('show_books');
+            }
+
         } else {
             return $this->redirectToRoute('show_books');
         }

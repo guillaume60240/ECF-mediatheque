@@ -45,7 +45,7 @@
     <h5 class="text-dark h4">Genres littéraires</h5>
     <ul>
         {% for category in categories.findAll %}
-            <li><a href="">{{ category.name }} - {{ category.subCategory }}</a></li>
+            <li><a href="{{  path('show_books_category', {'category' : category.id}) }}">{{ category.name }} - {{ category.subCategory }}</a></li>
         {% endfor %} 
     </ul>
   </div>
