@@ -4,6 +4,7 @@ twig:
     globals:
         siteName: 'Médiathèque de La Chapelle-Curreaux'
         categories: '@App\Repository\CategoryRepository'
+        booksList: '@App\Repository\BookRepository'
 
 when@test:
     twig:
