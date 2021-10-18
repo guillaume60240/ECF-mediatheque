@@ -7,15 +7,16 @@
     </button>
     <a class="navbar-brand" href="{{ path('show_books') }}">{{ siteName }}</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    {% set route_name = app.request.attributes.get('_route') %}
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ path('show_books') }}">Catalogue</a>
+          <a class="nav-link {% if route_name == 'show_books' or route_name == 'show_one_book' or route_name == 'show_one_book_by_name' or route_name == 'show_books_autor' %}active {% endif %}" aria-current="page" href="{{ path('show_books') }}">Catalogue</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('account') }}">Mon compte</a>
+          <a class="nav-link {% if route_name == 'account' %} active {% endif %}" href="{{ path('account') }}">Mon compte</a>
         </li>
         <li class="nav-item">
-          <a href="{{ path('app_logout') }}"class="nav-link">Me déconnecter</a>
+          <a href="{{ path('app_logout') }}" class="nav-link" onclick="return confirm('Vous allez être déconnecté du site')">Me déconnecter</a>
         </li>
         {% for role in app.user.roles %}
           {% if role == 'ROLE_ADMIN' %}

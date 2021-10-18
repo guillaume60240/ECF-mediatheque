@@ -7,6 +7,7 @@ use App\Services\Mail\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -30,6 +31,11 @@ class UserCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return User::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setPageTitle('index', 'Membres');
     }
 
     public function configureActions(Actions $actions): Actions
@@ -152,11 +158,11 @@ class UserCrudController extends AbstractCrudController
     {
         return [
 
-            TextField::new('name')
+            TextField::new('name', 'Prénom')
                 ->setFormTypeOption('disabled','disabled'),
-            TextField::new('firstname')
+            TextField::new('firstname', 'Nom')
                 ->setFormTypeOption('disabled','disabled'),
-            TextField::new('email')
+            TextField::new('email', 'Mail')
                 ->setFormTypeOption('disabled','disabled'),
             BooleanField::new('mailValidate', 'Email validé')
                 ->setFormTypeOption('disabled','disabled'),

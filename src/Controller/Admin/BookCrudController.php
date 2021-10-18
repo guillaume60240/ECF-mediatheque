@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -18,20 +19,25 @@ class BookCrudController extends AbstractCrudController
         return Book::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setPageTitle('index', 'Livres');
+    }
+
     
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
+            TextField::new('title', 'Titre'),
             SlugField::new('titleSlug')->setTargetFieldName('title')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            TextField::new('autor'),
+            TextField::new('autor', 'Auteur'),
             SlugField::new('autorSlug')->setTargetFieldName('autor')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            AssociationField::new('category'),
-            ImageField::new('picture')
+            AssociationField::new('category', 'Categorie'),
+            ImageField::new('picture', 'Image')
                 ->setBasePath('uploads/books')
                 ->setUploadDir('public/uploads/books')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
@@ -41,10 +47,10 @@ class BookCrudController extends AbstractCrudController
             NumberField::new('parution')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            TextField::new('description')
+            TextField::new('description', 'Résumé')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            BooleanField::new('available')
+            BooleanField::new('available', 'Disponible')
             ->setFormTypeOption('disabled','disabled')
         ];
     }
