@@ -3,12 +3,12 @@
 {% block title %}Validation de mail{% endblock %}
 
 {% block body %}
-   <div class="container vh-100 mt-5">
-        <h1 class="text-center">{{ siteName }}</h1>
+   <div class="container mt-5 login-container">
+        <h1 class="text-center  bg-light p-3">{{ siteName }}</h1>
         <h2 class="text-center mt-3">Valider mon mail</h2>
         <div class="container mt-3">
             {{ form(form) }}
         </div>
-        <a href="{{ path('home') }}">Aller àl'accueil</a>
+        <a href="{{ path('home') }}">Aller à l'accueil</a>
    </div>
 {% endblock %}

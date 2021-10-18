@@ -3,19 +3,24 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <form method="post">
+    <div class="container mt-5 login-container">
+        <h1 class="text-center bg-light p-3">{{ siteName }}</h1>
+        <form method="post" class="mb-5">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             {% if app.user %}
                 <div class="mb-3">
-                    Vous êtes déjà connecté  {{ app.user.username }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                    Vous êtes déjà connecté  {{ app.user.username }} <br/> 
+                        <a href="{{ path('app_logout') }}">Me déconnecter</a><br/>
+                        {% if app.user.accountValidate == true %}
+                            <a href="{{ path('account') }}">Aller sur mon compte</a>
+                        {% endif %}
                 </div>
             {% endif %}
             <div class="container">
-                <h1 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h1>
+                <h2 class="h3 mb-3 font-weight-normal">Merci de vous connecter</h2>
                 <label for="inputEmail">Votre email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="Votre email">
                 <label for="inputPassword" class="mt-3">Votre mot de passe</label>
@@ -41,5 +46,6 @@
                 </button>
             </div>
         </form>
+        <a href="{{ path('home') }}">Aller à l'accueil</a>
     </div>
 {% endblock %}

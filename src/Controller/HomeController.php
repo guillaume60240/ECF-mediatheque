@@ -18,7 +18,6 @@ class HomeController extends AbstractController
     public function index(Request $request, UserService $userService): Response
     {
         $success = false;
-        $error = false;
         $user = new User();
         $registerForm = $this->createForm(RegisterType::class, $user);
         $registerForm->handleRequest($request);
@@ -27,8 +26,8 @@ class HomeController extends AbstractController
             $success = $userService->create($registerForm);
 
             if($success === true) {
-                $this->addFlash('success', 'Inscription réussie, en attente de validation');
-                return $this->redirectToRoute('app_login');
+                $this->addFlash('success', 'Inscription réussie, merci de rentrer le code reçu par mail.');
+                return $this->redirectToRoute('accountValidate');
             } elseif($success === 'error') {
                 $this->addFlash('error', 'Une erreur s\'est produite, merci de réessayer plus tard.');
             }
