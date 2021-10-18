@@ -3,6 +3,8 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         siteName: 'Médiathèque de La Chapelle-Curreaux'
+        siteMail: 'testmail@test.com'
+        sitePhone: '0000000000'
         categories: '@App\Repository\CategoryRepository'
         booksList: '@App\Repository\BookRepository'
 

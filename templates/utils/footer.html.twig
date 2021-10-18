@@ -2,15 +2,15 @@
   <div class="container pt-3">
     <div class="row">
       <div class="col-md-6 footer-column">
-        <ul class="nav flex-column">
+        <ul class="nav flex-column list-inline">
           <li class="nav-item">
             <span class="footer-title">La médiathèque</span>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">A propos</a>
+          <li class="list-inline-item">
+            <a href="#" data-toggle="modal" data-target="#about">A propos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nous contacter</a>
+          <li class="list-inline-item">
+            <a href="#" data-toggle="modal" data-target="#contactModal">Contact</a>
           </li>
         </ul>
       </div>
@@ -20,16 +20,16 @@
             <span class="footer-title">Informations Légales</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Règlement intérieur</a>
+            <a href="#" data-toggle="modal" data-target="#reglement">Règlement</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Conditions d'utilisation</a>
+            <a href="#" data-toggle="modal" data-target="#privacy">Conditions générales</a>
           </li>
         </ul>
       </div>
     </div>
     
-    <div class="text-center">
+    <div class="text-center mt-3">
       <div>
         <span>
             Copyright &copy; {{ siteName }} <script>document.write(new Date().getFullYear())</script>

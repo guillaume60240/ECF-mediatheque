@@ -1,0 +1,32 @@
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nous contacter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="text-start">
+                    <p>Mail : <a href="mailto:{{ siteMail }}">{{ siteMail }}</a></p>
+                    <p>Téléphone : <a href="tel:{{ sitePhone }}">{{ sitePhone }}</a></p>
+                    <p>Adresse : 
+                        <p class="text-center">
+                            {{ siteName }}</br>
+                            26 rue de la médiathèque</br>
+                            La Chapelle-Curreaux
+                        </p>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <p>
+                    N'hésitez pas à nous contacter nous ferons tout notre possible pour répondre à votre demande.</br> 
+                    <span class="text-primary"> L'équipe de {{siteName}} </span>
+                </p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{{ siteName }}{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -18,16 +18,23 @@
         {% endblock %}
     </head>
     <body>
-        {% if block('header') is defined %}
-            {% include "utils/header.html.twig" %}
-        {% endif %}
-    
-        <div class="flash">
-            {% include('utils/flash.html.twig') %}
-        </div>
-        {% block body %}
-            
-        {% endblock %}
+        <header>
+            {% if block('header') is defined %}
+                {% include "utils/header.html.twig" %}
+            {% endif %}
+        </header>
+        <main>
+            <div class="flash">
+                {% include('utils/flash.html.twig') %}
+            </div>
+            {% block body %}
+                
+            {% endblock %}
+        </main>
         {% include "utils/footer.html.twig" %}
+        {% include 'utils/modals/contact.html.twig' %}
+        {% include 'utils/modals/about.html.twig' %}
+        {% include 'utils/modals/reglement.html.twig' %}
+        {% include 'utils/modals/privacy.html.twig' %}
     </body>
 </html>

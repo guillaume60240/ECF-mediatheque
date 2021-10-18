@@ -107,10 +107,6 @@ class RegisterType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => "Valider"
             ])
-
-            ->add('delete', ResetType::class, [
-                'label' => "Annuler"
-            ])
         ;
     }
 
