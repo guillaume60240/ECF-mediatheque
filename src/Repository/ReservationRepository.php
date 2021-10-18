@@ -49,6 +49,19 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
     
+    /**
+     * Get all nonValidate reservations
+     */
+    public function getNonValidateReservations()
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.validate = :val')
+            ->setParameter('val', false)
+            ->orderBy('r.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Reservation

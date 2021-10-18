@@ -3,20 +3,19 @@
 namespace App\Services\Location;
 
 use App\Entity\Reservation;
-use App\Repository\BookRepository;
-use App\Repository\UserRepository;
+use App\Repository\ReservationRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
 class LocationService {
 
-    protected $userRepo;
-    protected $bookRepo;
     protected $entityManager;
+    protected $reservationRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, ReservationRepository $reservationRepository)
     {
         $this->entityManager = $entityManager;
+        $this->reservationRepository = $reservationRepository;
     }
 
     public function new($user, $book)
@@ -53,5 +52,22 @@ class LocationService {
         $this->entityManager->remove($reservation);
 
         $this->entityManager->flush();
+    }
+
+    public function removeNonValidateReservation()
+    {
+        $reservations = $this->reservationRepository->getNonValidateReservations();
+        if($reservations){
+            $now = new DateTimeImmutable();
+            $deleted = 0;
+            foreach($reservations as $reservation){
+                if(($reservation->getCreatedAt()->modify('+ 3 day')) > $now ){
+                    $this->delete($reservation);
+                    $deleted ++;
+                }
+            }
+
+            return $deleted;
+        }
     }
 }
