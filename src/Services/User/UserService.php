@@ -71,4 +71,19 @@ class UserService {
             return $deleted;
         } 
     }
+
+    public function createSuperAdmin($mail)
+    {
+        $user = $this->userRepository->findOneBy(['email' => $mail]);
+
+        if(!$user){
+            return false;
+        } else{
+            $user->setRoles(['ROLE_MEMBER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN']);
+            $user->setMailValidate(true);
+            $user->setAccountValidate(true);
+            $this->entityManager->flush();
+            return true;
+        }
+    }
 }
