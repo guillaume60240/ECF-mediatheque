@@ -36,6 +36,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
     
+    /**
+     * Get all nonValidate users
+     */
+    public function getNonValidateUsers()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.mailValidate = :val')
+            ->setParameter('val', false)
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return User[] Returns an array of User objects

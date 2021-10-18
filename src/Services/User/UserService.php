@@ -52,4 +52,23 @@ class UserService {
             return $succcess = 'error';
         }
     }
+
+    public function removeNonValidateUser()
+    {
+        $users = $this->userRepository->getNonValidateUsers();
+        if($users){
+            $now = new DateTimeImmutable();
+            $deleted = 0;
+            
+            foreach($users as $user){
+                if($user->getCreatedAt() > $now->modify('- 14 day') ){
+                    $this->entityManager->remove($user);
+                    $this->entityManager->flush();
+                    $deleted ++;
+                }
+            }
+
+            return $deleted;
+        } 
+    }
 }
