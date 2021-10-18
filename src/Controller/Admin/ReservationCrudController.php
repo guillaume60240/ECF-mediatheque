@@ -40,12 +40,18 @@ class ReservationCrudController extends AbstractCrudController
         return $actions
             ->add('detail', $bookGive)
             ->add('detail', $bookRestitution)
-            ->add('index', 'detail');
+            ->add('index', 'detail')
+            ->disable(Action::NEW, Action::DELETE, Action::EDIT);;
     }
 
     public function bookGive(AdminContext $context)
     {
         $action = $context->getEntity()->getInstance();
+        if($action->getValidate() === true){
+            $this->addFlash('notice', "<span style='color:red;'>Vous ne pouvez pas effectuer cette action</span>");
+
+        return $this->redirection($action);
+        }
 
         $date = new DateTimeImmutable();
 

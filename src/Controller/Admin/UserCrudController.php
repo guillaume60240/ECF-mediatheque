@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Services\Mail\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -64,7 +65,7 @@ class UserCrudController extends AbstractCrudController
         }
     }
 
-    public function accountValidation(AdminContext $context)
+    public function accountValidation(AdminContext $context, MailService $mailService)
     {
         $action = $context->getEntity()->getInstance();
         if($action->getAccountValidate() === false && !in_array('ROLE_SUPER_ADMIN', $action->getRoles()) && !in_array('ROLE_ADMIN', $action->getRoles())){
@@ -73,6 +74,7 @@ class UserCrudController extends AbstractCrudController
             $action->setRoles(['ROLE_MEMBER']);
             $this->entityManager->flush();
             
+            $mailService->accountValidate($action);
             $this->addFlash('notice', "<span style='color:green;'>Le compte a été validé</span>");
 
         } else{
