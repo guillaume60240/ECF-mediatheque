@@ -32,8 +32,8 @@ class BookCrudController extends AbstractCrudController
             SlugField::new('titleSlug')->setTargetFieldName('title')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            TextField::new('autor', 'Auteur'),
-            SlugField::new('autorSlug')->setTargetFieldName('autor')
+            TextField::new('author', 'Auteur'),
+            SlugField::new('authorSlug')->setTargetFieldName('author')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
             AssociationField::new('category', 'Categorie'),

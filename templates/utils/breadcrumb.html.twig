@@ -1,0 +1,18 @@
+{% set route_name = app.request.attributes.get('_route') %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item {% if route_name == 'show_books'%} active {% endif %}">{% if route_name != 'show_books' %} <a href="{{ path('show_books') }}">Accueil</a>{% else %}Accueil {% endif %}</li>
+    {% if route_name == 'show_books_author' or route_name == 'show_books_category' or route_name == 'show_one_book' %}
+        <li class="breadcrumb-item"><a href="{{ path('show_books') }}">Catalogue</a></li>
+    {% endif %}
+    {% if route_name == 'show_books_author' %}
+    <li class="breadcrumb-item active">{{ authorSlug }}</li>
+    {% endif %}
+    {% if route_name == 'show_books_category' %}
+    <li class="breadcrumb-item active">{{ categoryName }}</li>
+    {% endif %}
+    {% if route_name == 'show_one_book' %}
+    <li class="breadcrumb-item active" aria-current="page">{{ book.title }}</li>
+    {% endif %}
+  </ol>
+</nav>

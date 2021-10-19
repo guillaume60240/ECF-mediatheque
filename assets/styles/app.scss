@@ -4,6 +4,7 @@
 @import "books";
 @import "book";
 @import "login";
+@import "modal";
 
 *, ::before, ::after {
     box-sizing: border-box;
@@ -17,9 +18,3 @@ body {
     font-family: 'Abril Fatface', cursive;
 }
 
-.flash {
-    position: absolute;
-    right: 0;
-    left: 0;
-    z-index: 100;
-}

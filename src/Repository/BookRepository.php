@@ -34,11 +34,11 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getPaginatedBooksByAutor($pageBook, $limit, $autorSlug)
+    public function getPaginatedBooksByAuthor($pageBook, $limit, $authorSlug)
     {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.autorSlug = :val')
-            ->setParameter('val', $autorSlug)
+            ->andWhere('b.authorSlug = :val')
+            ->setParameter('val', $authorSlug)
             ->orderBy('b.title', 'ASC')
             ->setFirstResult(($pageBook * $limit) - $limit)
             ->setMaxResults($limit)

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Repository\BookRepository;
 use App\Repository\ReservationRepository;
 use App\Services\Location\LocationService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,12 +28,12 @@ class ReservationController extends AbstractController
         if($location){
             $this->addFlash(
                 'success',
-                'Vous avez réservé le livre '.$book->getTitle().' de '.$book->getAutor()
+                'Vous avez réservé le livre '.$book->getTitle().' de '.$book->getAuthor()
             );
         } else {
             $this->addFlash(
                 'error',
-                'Le livre '.$book->getTitle().' de '.$book->getAutor().' n\'est pas disponible pour le moment '
+                'Le livre '.$book->getTitle().' de '.$book->getAuthor().' n\'est pas disponible pour le moment '
             );
         }
 
@@ -54,7 +53,7 @@ class ReservationController extends AbstractController
             $locationService->delete($reservation);
             $this->addFlash(
                 'success',
-                'Vous avez annulé la réservation de '.$book->getTitle().' de '.$book->getAutor()
+                'Vous avez annulé la réservation de '.$book->getTitle().' de '.$book->getAuthor()
             );
         }
 

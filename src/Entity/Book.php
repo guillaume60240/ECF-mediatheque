@@ -37,7 +37,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $autor;
+    private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="books")
@@ -63,7 +63,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $autorSlug;
+    private $authorSlug;
 
     /**
      * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="book")
@@ -77,7 +77,7 @@ class Book
 
     public function __toString()
     {
-        return $this->getTitle().' de '.$this->getAutor();
+        return $this->getTitle().' de '.$this->getAuthor();
     }
 
     public function getId(): ?int
@@ -121,14 +121,14 @@ class Book
         return $this;
     }
 
-    public function getAutor(): ?string
+    public function getAuthor(): ?string
     {
-        return $this->autor;
+        return $this->author;
     }
 
-    public function setAutor(string $autor): self
+    public function setAuthor(string $author): self
     {
-        $this->autor = $autor;
+        $this->author = $author;
 
         return $this;
     }
@@ -181,14 +181,14 @@ class Book
         return $this;
     }
 
-    public function getAutorSlug(): ?string
+    public function getAuthorSlug(): ?string
     {
-        return $this->autorSlug;
+        return $this->authorSlug;
     }
 
-    public function setAutorSlug(string $autorSlug): self
+    public function setAuthorSlug(string $authorSlug): self
     {
-        $this->autorSlug = $autorSlug;
+        $this->authorSlug = $authorSlug;
 
         return $this;
     }

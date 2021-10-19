@@ -30,10 +30,16 @@
                 {% include "utils/header.html.twig" %}
             {% endif %}
         </header>
-        <main>
-            <div class="flash">
-                {% include('utils/flash.html.twig') %}
+        <div class="flash">
+            {% include('utils/flash.html.twig') %}
+        </div>
+        {% if block('breadcrumb') is defined %}
+            <div class="ps-3 pt-3">
+            {% include "utils/breadcrumb.html.twig" %}
             </div>
+        {% endif %}
+        <main>
+
             {% block body %}
                 
             {% endblock %}

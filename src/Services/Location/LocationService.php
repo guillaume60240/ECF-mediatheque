@@ -61,7 +61,7 @@ class LocationService {
             $now = new DateTimeImmutable();
             $deleted = 0;
             foreach($reservations as $reservation){
-                if($reservation->getCreatedAt() > $now->modify('- 3 day') ){
+                if($reservation->getCreatedAt() < $now->modify('- 3 day') ){
                     $this->delete($reservation);
                     $deleted ++;
                 }

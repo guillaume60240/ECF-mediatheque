@@ -50,12 +50,14 @@ class ShowBooksController extends AbstractController
                 if($pageBook > ceil($totalBooks/$limit) && $pageBook != 1){
                 return $this->redirectToRoute('show_books_category', ['category' => $category, 'pageBook' => 1]);
                 }
+                $categoryName = $bookCategory->getName().' - '.$bookCategory->getSubCategory();
                 return $this->render('show_books/index.html.twig', [
                     'books' => $books,
                     'totalBooks' => $totalBooks,
                     'pageBook' => $pageBook,
                     'limit' => $limit,
-                    'category' => $category
+                    'category' => $category,
+                    'categoryName' => $categoryName
                 ]);
             } else{
                 $this->addFlash('error', 'Il n\'y a pas de livre dans cette catégorie.');
@@ -68,26 +70,27 @@ class ShowBooksController extends AbstractController
     }
 
     /**
-     * @Route("/membre/catalogue-auteur/{autorSlug}/?page={pageBook}", name="show_books_autor")
+     * @Route("/membre/catalogue-auteur/{authorSlug}/?page={pageBook}", name="show_books_author")
      */
-    public function showByAutor(BookRepository $bookRepository, string $autorSlug, $pageBook = 1): Response
+    public function showByAuthor(BookRepository $bookRepository, string $authorSlug, $pageBook = 1): Response
     {
         $limit = 6;
 
-        $books = $bookRepository->getPaginatedBooksByAutor($pageBook, $limit, $autorSlug);
+        $books = $bookRepository->getPaginatedBooksByAuthor($pageBook, $limit, $authorSlug);
 
          if($books){
-            $totalBooks = count($bookRepository->findBy(['autorSlug' => $autorSlug]));
+            $totalBooks = count($bookRepository->findBy(['authorSlug' => $authorSlug]));
             //redirection si une page inexistante est demandée
             if($pageBook > ceil($totalBooks/$limit) && $pageBook != 1){
-            return $this->redirectToRoute('show_books_category', ['autorSlug' => $autorSlug, 'pageBook' => 1]);
+            return $this->redirectToRoute('show_books_author', ['authorSlug' => $authorSlug, 'pageBook' => 1]);
             }
+
             return $this->render('show_books/index.html.twig', [
                 'books' => $books,
                 'totalBooks' => $totalBooks,
                 'pageBook' => $pageBook,
                 'limit' => $limit,
-                'autorSlug' => $autorSlug
+                'authorSlug' => $authorSlug,
             ]);
          } else{
             $this->addFlash('error', 'Cet auteur n\'existe pas');

@@ -61,7 +61,7 @@ class UserService {
             $deleted = 0;
             
             foreach($users as $user){
-                if($user->getCreatedAt() > $now->modify('- 14 day') ){
+                if($user->getCreatedAt() < $now->modify('- 14 day') && $user->getAccountValidate() === false){
                     $this->entityManager->remove($user);
                     $this->entityManager->flush();
                     $deleted ++;
