@@ -51,7 +51,7 @@ class Reservation
 
     public function __toString()
     {
-        return $this->getBook()->getTitle().' '.$this->getBook()->getAutor();
+        return $this->getBook()->getTitle().' '.$this->getBook()->getAuthor();
     }
 
     public function getId(): ?int
