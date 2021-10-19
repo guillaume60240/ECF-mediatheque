@@ -146,12 +146,12 @@ Afin de pouvoir exécuter l'application sur votre poste, vous devez d'aborder in
 
 ### Nommer un super admin
   1. Commande symfony    
-    * php bin/console app:user:superadmin ‘adresseMailUtilisateur’
+    php bin/console app:user:superadmin ‘adresseMailUtilisateur’
   2. Commande sql (si besoin)   
-    * UPDATE `user` SET `roles` = '[« ROLE_ADMIN », "ROLE_SUPER_ADMIN », « ROLE_MEMBRE" ]' WHERE `user`.`email` = « mailUtilisateur";
+    UPDATE `user` SET `roles` = '[« ROLE_ADMIN », "ROLE_SUPER_ADMIN », « ROLE_MEMBRE" ]' WHERE `user`.`email` = "mailUtilisateur";
 
 ### Tâches récurrentes (Cron Job)
   1. Suppressions automatiques des réservations arrivées à échéances (3jours)   
-    * app:reservations:cleanup
+    app:reservations:cleanup
   2. Suppressions des inscrits non validés (après 15 jours)   
-    * app:users:cleanup
+    app:users:cleanup
