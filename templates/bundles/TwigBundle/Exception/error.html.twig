@@ -1,0 +1,33 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+ 
+{% block title %}
+    Page introuvable - {{siteName}}
+{% endblock %}
+
+{% if app.user and app.user.accountValidate == true %}
+    {% block header %}
+    {% include 'utils/header.html.twig' %}
+    {% endblock %}
+
+    {% block body %}
+    <div class="text-center container mt-5">
+        <h4 class="text-info text-center"> Page introuvable </h4>
+        
+        <p class="alert alert-danger">Oups, il semblerait que votre demande n'a pas pu aboutir</p>
+        <a href="{{ path('account') }}">Revenir à votre compte</a>
+        
+    </div>
+    {% endblock %}
+{% else %}
+    {% block body %}
+    <div class="text-center container mt-5">
+        <h1 class="text-center  bg-light p-3">{{ siteName }}</h1>
+        <h4 class="text-info text-center"> Page introuvable </h4>
+        
+        <p class="alert alert-danger">Oups, il semblerait que votre demande n'a pas pu aboutir</p>
+        <a href="{{ path('home') }}">Revenir à l'accueil</a>
+        
+    </div>
+    {% endblock %}
+{% endif %}
