@@ -55,8 +55,8 @@ class AccountController extends AbstractController
             $action = $validationService->valideMail($mail, $code);
 
             if($action === true){
-                $this->addFlash('succes', 'Votre mail a été validé.');
-
+                $this->addFlash('succes', 'Votre mail a été validé. Vous recevrez un mail quand votre compte aura été validé.');
+                return $this->redirectToRoute('app_login');
                
             }else{
                 $this->addFlash('error', 'Il y a eu une erreur dans la validation de votre mail.');
