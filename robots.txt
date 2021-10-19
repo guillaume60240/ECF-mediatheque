@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://ecfmediatheque.fr/sitemap.xml
+Sitemap: http://ecfmediatheque.fr/sitemap.xml
