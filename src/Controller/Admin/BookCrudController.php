@@ -51,7 +51,6 @@ class BookCrudController extends AbstractCrudController
                 ->onlyOnDetail()
                 ->onlyOnForms(),
             BooleanField::new('available', 'Disponible')
-            ->setFormTypeOption('disabled','disabled')
         ];
     }
     
