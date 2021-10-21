@@ -50,7 +50,7 @@ class BookCrudController extends AbstractCrudController
             TextField::new('description', 'Résumé')
                 ->onlyOnDetail()
                 ->onlyOnForms(),
-            BooleanField::new('available', 'Disponible')->setValue(true)
+            BooleanField::new('available', 'Disponible')
         ];
     }
     
