@@ -62,7 +62,8 @@ class LocationService {
             $deleted = 0;
             foreach($reservations as $reservation){
                 if($reservation->getCreatedAt() < $now->modify('- 3 day') ){
-                    $this->delete($reservation);
+                    $this->entityManager->remove($reservation);
+                    $this->entityManager->flush();
                     $deleted ++;
                 }
             }
