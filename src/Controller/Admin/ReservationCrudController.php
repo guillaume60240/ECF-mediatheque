@@ -96,7 +96,7 @@ class ReservationCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setDefaultSort(['user' => 'ASC']);
+        return $crud->setDefaultSort(['createdAt' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
