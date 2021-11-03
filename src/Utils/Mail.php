@@ -7,7 +7,7 @@ use Mailjet\Resources;
 
 class Mail{
     private $api_key = '7db1903fc486fa9e3409135d0c98a699';
-    private $api_key_secrete = 'dd977e3bb724501b74d234e5ad85f94f';
+    private $api_key_secrete = '93d9763ffd47b2727f7041758d0920b9';
 
     public function sendValidation($to_email, $to_name, $subject, $name, $code, $link, $template){
         $mj= new Client($this->api_key, $this->api_key_secrete,true,['version' => 'v3.1']);
