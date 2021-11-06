@@ -42,8 +42,8 @@
                             <p class="bg-info">Emprunté le : {{ location.validateAt|date('d-m-Y') }}</p>
                             <p>{{ location.book.title }}
                             <p>{{ location.book.author }}
-                            {% set delay = location.createdAt|date_modify("+21 day") %}
-                            {% if delay < date("now"|date()) %}
+                            {% set delay = location.validateAt|date_modify("+21 day") %}
+                            {% if delay <= date("now"|date()) %}
                                 {% set difference = date( "now"|date()).diff(delay) %}
                                 {% set leftDays = difference.days %}
                                 {% set leftMonths = difference.m %}
