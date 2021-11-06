@@ -44,3 +44,28 @@ navBtnToggler.addEventListener('click', () => {
         navBtnTogglerSpan.innerHTML = 'Les genres &uarr;';
     }
 })
+
+//Animation catalogue
+const bookCard  = document.querySelectorAll('.books-card'); 
+//on crée les options de l'observer
+let options = {
+    root: null,
+    rootMargin: '-15% 0px',
+    threshold: 0
+}
+// on crée la fonction de l'observer
+function handleIntersect(entries){
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.style.opacity = 1;
+            observer.unobserve(entry.target);
+        }
+    })
+}
+//on crée l'observer
+const observer = new IntersectionObserver(handleIntersect, options);
+
+//on lance l'observer sur chaque élément
+bookCard.forEach(card => {
+    observer.observe(card);
+})
