@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends DoctrineFixturesBundle
+class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
