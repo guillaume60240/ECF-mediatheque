@@ -15,6 +15,7 @@ class RegisterControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertEquals(4, $crawler->filter('input[type="text"]')->count());
         $this->assertEquals(1, $crawler->filter('input[type="email"]')->count());
+        $this->assertEquals(3, $crawler->filter('select')->count());
         $this->assertEquals(2, $crawler->filter('input[type="password"]')->count());
         $this->assertEquals(1, $crawler->filter('input[type="checkbox"]')->count());
         $this->assertEquals(1, $crawler->filter('button[type="submit"]')->count());  
@@ -29,7 +30,7 @@ class RegisterControllerTest extends WebTestCase
         $form = $crawler->selectButton('Valider')->form();
         $form['register[name]'] = 'testname';
         $form['register[firstname]'] = 'testfirstname';
-        $form['register[email]'] = 'test@test.com';
+        $form['register[email]'] = 'test@test2.com';
         $form['register[birthday][day]'] = '12';
         $form['register[birthday][month]'] = '1';
         $form['register[birthday][year]'] = '2000';
@@ -41,7 +42,7 @@ class RegisterControllerTest extends WebTestCase
 
         $client->submit($form);
 
-        $this->assertResponseRedirects('/valider-mon-mail');
+        $this->assertResponseRedirects("/valider-mon-mail");
         $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
