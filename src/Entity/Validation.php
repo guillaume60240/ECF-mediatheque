@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ValidationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ValidationRepository::class)
@@ -24,7 +25,9 @@ class Validation
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4)
+     * @Assert\Regex("/^\d{4}$/")
+     * @Assert\NotBlank
      */
     private $code;
 

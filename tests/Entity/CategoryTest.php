@@ -22,7 +22,6 @@ class CategoryTest extends TestCase
         $this->assertEquals('SubCategory', $category->getSubcategory());
     }
 
-
     public function testGetBooks()
     {
         $category = new Category();
