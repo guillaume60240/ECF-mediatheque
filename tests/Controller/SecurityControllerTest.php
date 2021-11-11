@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SecurityControllerTest extends WebTestCase
@@ -37,5 +36,20 @@ class SecurityControllerTest extends WebTestCase
         $this->assertResponseRedirects('/login');
         $client->followRedirect();
         $this->assertSelectorExists('div.alert.alert-danger');
+    }
+
+    public function testGoodLogin()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/login');
+
+        $form = $crawler->selectButton('Valider')->form();
+        $form['email'] = 'test9@test.fr';
+        $form['password'] = 'truepass';
+
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/compte');
     }
 }

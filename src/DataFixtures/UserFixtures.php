@@ -16,8 +16,13 @@ class UserFixtures extends Fixture
             $user->setName('user'.$i);
             $user->setFirstname('firstname'.$i);
             $user->setEmail('test'.$i.'@test.fr');
-            $user->setPassword('test');
-            $user->setRoles(['ROLE_USER']);
+            if($i === 9) {
+                $user->setPassword('$2y$10$uEZ.OJ18aOvWF9qeG2yAh.zSW0M9uH3jaGkz1vODJP9jWxbXzQlli');
+                $user->setRoles(['ROLE_USER', 'ROLE_MEMBER']);
+            } else {
+                $user->setPassword('test');
+                $user->setRoles(['ROLE_USER']);
+            }
             $user->setAddress('adress'.$i);
             $user->setMailValidate(false);
             $user->setAccountValidate(false);
